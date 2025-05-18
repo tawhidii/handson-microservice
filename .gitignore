@@ -1,0 +1,42 @@
+# Go build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Go modules and workspace files
+go.work
+go.work.sum
+
+# Vendor directory
+/vendor/
+
+# Dependency management
+/Godeps/
+
+# VS Code settings
+.vscode/
+
+# PyCharm settings
+.idea/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+
+# Editor swap/backup files
+*.swp
+*.swo
+
+# Coverage and profiling data
+*.coverprofile
+*.cov
+*.prof
