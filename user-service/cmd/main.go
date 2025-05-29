@@ -1,25 +1,21 @@
 package main
 
 import (
-	"github.com/tawhidii/user-service/config"
-	"github.com/tawhidii/user-service/db"
-	"github.com/tawhidii/user-service/routes"
-	"log"
-	"os"
-
 	"github.com/gofiber/fiber/v2"
+	"github.com/tawhidii/user-service/db"
+	"github.com/tawhidii/user-service/repository"
+	"github.com/tawhidii/user-service/routes"
+	"github.com/tawhidii/user-service/services"
+	"log"
 )
 
 func main() {
-	config.LoadEnv()
-	db.ConnectDatabase()
-
 	app := fiber.New()
-	routes.SetupRoutes(app)
+	db := db.ConnectDatabase()
+	userRepo := repository.NewUserRepository(db)
+	authService := services.NewAuthService(userRepo)
 
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "3000"
-	}
-	log.Fatal(app.Listen(":" + port))
+	routes.Setup(app, authService)
+
+	log.Fatal(app.Listen(":3000"))
 }
