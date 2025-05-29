@@ -14,6 +14,12 @@ define validate_args
 	fi;
 endef
 
+start:
+	docker compose up -d --build
+stop:
+	docker compose down
+restart:
+	docker compose restart
 # Generate new migration file
 atlas-migrate:
 	atlas migrate diff --env $(ENV_NAME)

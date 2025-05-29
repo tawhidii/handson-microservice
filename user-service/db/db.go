@@ -10,7 +10,7 @@ import (
 
 var DB *gorm.DB
 
-func ConnectDatabase() {
+func ConnectDatabase() *gorm.DB {
 	dbDsn := os.Getenv("DATABASE_URL")
 	fmt.Println("DB URL is", dbDsn)
 	if dbDsn == "" {
@@ -22,6 +22,5 @@ func ConnectDatabase() {
 	if err != nil {
 		log.Fatal("Failed to connect to database:", err)
 	}
-
-	fmt.Println("✅ Successfully connected to the database.")
+	return DB
 }
