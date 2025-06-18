@@ -10,5 +10,6 @@ func Setup(app *fiber.App, authService services.AuthService) {
 	authController := controllers.NewAuthController(authService)
 	app.Post("/register", authController.Register)
 	app.Post("/login", authController.Login)
+	app.Get("/validate", authController.ValidateToken)
 	app.Get("/health", controllers.HealthCheck)
 }
