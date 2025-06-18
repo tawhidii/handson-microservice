@@ -2,7 +2,8 @@ package services
 
 import (
 	"errors"
-	models "github.com/tawhidii/user-service/model"
+
+	models "github.com/tawhidii/user-service/models"
 	"github.com/tawhidii/user-service/repository"
 	"github.com/tawhidii/user-service/utils"
 	"golang.org/x/crypto/bcrypt"
@@ -11,7 +12,7 @@ import (
 type AuthService interface {
 	Register(user *models.User) error
 	Login(email string, password string) (string, error)
-	//ValidateToken(token string) (map[string]interface{}, error)
+	ValidateToken(token string) (map[string]interface{}, error)
 }
 
 type authService struct {
@@ -41,4 +42,8 @@ func (service *authService) Login(email string, password string) (string, error)
 		return "", errors.New("invalid password")
 	}
 	return utils.GenerateToken(user)
+}
+
+func (service *authService) ValidateToken(token string) (map[string]interface{}, error) {
+	return utils.ValidateToken(token)
 }
