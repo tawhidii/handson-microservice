@@ -1,6 +1,6 @@
-.PHONY: atlas-init create_migration atlas-apply atlas-status atlas-visualize atlas-help
+.PHONY: atlas-init atlas-migrate atlas-apply atlas-status atlas-visualize atlas-help
 
-DB_URL=postgres://postgres:password@localhost:5432/users_service_db?sslmode=disable
+DB_URL=postgres://postgres:password@localhost:5432/videos_service_db?sslmode=disable
 
 ENV_NAME=gorm
 
@@ -21,7 +21,7 @@ stop:
 restart:
 	docker compose restart
 # Generate new migration file
-create_migration:
+atlas-migrate:
 	atlas migrate diff --env $(ENV_NAME)
 
 atlas-apply:

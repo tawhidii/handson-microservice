@@ -8,4 +8,10 @@ services:
       - name: user-route
         paths:
           - /api/user-service/
-    
+
+  - name: video-service
+    url: http://video-service:3000
+    routes:
+      - name: video-route
+        paths:
+          - /api/video-service/
